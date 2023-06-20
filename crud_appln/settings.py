@@ -92,6 +92,46 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
+
+LOGGING = {
+    # Version of logging
+    'version': 1,
+    
+    #disable logging
+    'disable_existing_loggers': False,
+
+    # Handlers
+    'handlers': {
+        'file': {
+            # levels can be (debug,info,warning,error,critical)
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    ########################################################################
+    # SHOWS WHOLE THING IN CONSOLE ALSO
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+    },
+
+    # Loggers
+    'loggers': {
+        'django': {
+            # SHOWS WHOLE THING IN CONSOLE ALSO
+            'handlers': ['file', 'console'],
+            # 'handlers': ['file'],
+            # levels can be (debug,info,warning,error,critical)
+            'level': 'DEBUG',
+            'propagate': True,
+            # 'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+        },
+    },
+}
+
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
